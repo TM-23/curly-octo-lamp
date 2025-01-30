@@ -12,13 +12,8 @@ import (
 	"log"
 )
 
-var (
-	credentials *azidentity.DefaultAzureCredential
-)
-
 func main() {
 	ctx := context.Background()
-	credentials = GetCredentials()
 	ListApplications(ctx)
 
 }
@@ -66,13 +61,4 @@ func ListApplications(ctx context.Context) {
 		log.Fatalf("No applications found in the directory")
 	}
 
-}
-
-// GetCredentials this function returns credentials for the service principal
-func GetCredentials() *azidentity.DefaultAzureCredential {
-	credential, err := azidentity.NewDefaultAzureCredential(nil)
-	if err != nil {
-		log.Fatalf("failed to obtain a credential: %v", err)
-	}
-	return credential
 }
